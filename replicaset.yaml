@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: web-replicaset
+spec:
+  replicas: 3              # จำนวน pods ที่ต้องการ
+  selector:                # เลือก pods ที่จะจัดการ
+    matchLabels:
+      app: web
+  template:                # Template สำหรับสร้าง pods
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.21
+        ports:
+        - containerPort: 80
